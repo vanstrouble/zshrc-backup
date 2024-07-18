@@ -11,3 +11,12 @@
 [alias]
 	s = status -s -b
 	l = log --oneline --decorate --all --graph
+	last = log -1 HEAD
+[core]
+	editor = subl
+[color]
+	ui = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
