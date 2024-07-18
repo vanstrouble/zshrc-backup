@@ -144,3 +144,10 @@ autoload -Uz compinit && compinit
 
 # Eza alias
 alias ls='eza'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+bindkey '^I' expand-or-complete
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
