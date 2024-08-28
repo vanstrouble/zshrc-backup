@@ -8,6 +8,9 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Brew aucompletions
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -91,7 +94,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANPATH"\
+# Homebrew
+export HOMEBREW_NO_ENV_HINTS=1
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -112,12 +117,30 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="code ~/.zshrc"
+# alias ohmyzsh="code ~/.oh-my-zsh"
+
+# Laravel alias
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+autoload -Uz compinit && compinit
+
+# Thefuck alias
+eval $(thefuck --alias)
+
+# Eza alias
+alias ls='eza'
+
+# Fastfetch alias
+alias ff='fastfetch'
+
+# zoxide alias
+alias cd="z"
+
+# Fuck alias
+alias fk='fuck'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # >>> conda initialize >>>
@@ -135,49 +158,28 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# Laravel Aliases
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-autoload -Uz compinit && compinit
-
-# # Thefuck alias
-# eval $(thefuck --alias)
-
-# Eza alias
-alias ls='eza'
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 bindkey '^I' expand-or-complete
 
-# Set up fzf key bindings and fuzzy completion
-eval "$(fzf --zsh)"
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
 
-# -- Use fd instead of fzf --
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/vanstrouble/Library/Application Support/Herd/config/php/83/"
 
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# Herd injected PHP binary.
+export PATH="/Users/vanstrouble/Library/Application Support/Herd/bin/":$PATH
 
-# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
-}
 
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
-}
+# Herd injected NVM configuration
+export NVM_DIR="/Users/vanstrouble/Library/Application Support/Herd/config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-source ~/fzf-git.sh/fzf-git.sh
+[[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
 
-# --- setup fzf theme ---
-# fg="#CBE0F0"
-# bg="#011628"
-# bg_highlight="#143652"
-# purple="#B388FF"
-# blue="#06BCE4"
-# cyan="#2CF9ED"
+# fnm shell setup
+eval "$(fnm env --use-on-cd)"
 
-# export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+# MySQL Path for 8.4 version
+export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
