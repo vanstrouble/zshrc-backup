@@ -84,10 +84,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
     python
-    node
     zsh-autosuggestions
     zsh-syntax-highlighting
     web-search
+    you-should-use
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -120,7 +120,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 alias zshconfig="code ~/.zshrc"
 # alias ohmyzsh="code ~/.oh-my-zsh"
 
-# Laravel alias
+# Laravel Docker alias
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 autoload -Uz compinit && compinit
 
@@ -128,10 +128,7 @@ autoload -Uz compinit && compinit
 eval $(thefuck --alias)
 
 # Eza alias
-alias ls='eza'
-
-# Fastfetch alias
-alias ff='fastfetch'
+alias ls='eza --icons'
 
 # zoxide alias
 alias cd="z"
@@ -160,21 +157,10 @@ unset __conda_setup
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-bindkey '^I' expand-or-complete
-
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
 
-# Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/vanstrouble/Library/Application Support/Herd/config/php/83/"
-
-# Herd injected PHP binary.
-export PATH="/Users/vanstrouble/Library/Application Support/Herd/bin/":$PATH
-
-
-# Herd injected NVM configuration
-export NVM_DIR="/Users/vanstrouble/Library/Application Support/Herd/config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
 
