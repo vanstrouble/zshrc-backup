@@ -122,7 +122,6 @@ alias zshconfig="code ~/.zshrc"
 
 # Laravel Docker alias
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-autoload -Uz compinit && compinit
 
 # Thefuck alias
 eval $(thefuck --alias)
@@ -134,7 +133,12 @@ alias ls='eza --icons'
 alias cd="z"
 
 # Fuck alias
-alias fk='fuck'
+# alias fk='fuck'
+
+# Autocomplete
+autoload -Uz compinit && compinit
+# Bindkey for autosuggestions tab autocomplete.
+# bindkey '^I' autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -169,3 +173,9 @@ eval "$(fnm env --use-on-cd)"
 
 # MySQL Path for 8.4 version
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+
+# Enable fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Make better search with fzf
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"

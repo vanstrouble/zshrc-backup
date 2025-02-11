@@ -12,8 +12,8 @@
 	s = status -s -b
 	l = log --oneline --decorate --all --graph
 	last = log -1 HEAD
-[core]
-	editor = subl
+# [core]
+# 	editor = subl
 [color]
 	ui = auto
 	status = auto
