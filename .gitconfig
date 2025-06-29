@@ -4,8 +4,9 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = vanstrouble
+	name = Pedro Vázquez
 	email = vanstrouble@proton.me
+	signingkey = /Users/vanstrouble/.ssh/id_ed25519.pub
 [init]
 	defaultBranch = main
 [alias]
@@ -20,3 +21,10 @@
 	branch = auto
 	interactive = auto
 	diff = auto
+[commit]
+	sign = true
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /Users/vanstrouble/.ssh/allowed_signers

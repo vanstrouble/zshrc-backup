@@ -86,8 +86,9 @@ plugins=(
     python
     zsh-autosuggestions
     zsh-syntax-highlighting
-    web-search
+    conda-zsh-completion
     you-should-use
+    web-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -118,7 +119,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 #
 # Example aliases
 alias zshconfig="code ~/.zshrc"
-# alias ohmyzsh="code ~/.oh-my-zsh"
+alias zshreload="source ~/.zshrc"
 
 # Laravel Docker alias
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
@@ -130,7 +131,7 @@ eval $(thefuck --alias)
 alias ls='eza --icons'
 
 # zoxide alias
-alias cd="z"
+# alias cd="z"
 
 # Fuck alias
 # alias fk='fuck'
@@ -144,6 +145,7 @@ autoload -Uz compinit && compinit
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -179,3 +181,12 @@ export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 
 # Make better search with fzf
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'"
+export GPG_TTY=$(tty)
+
+# Created by `pipx` on 2025-05-12 17:04:52
+export PATH="$PATH:/Users/vanstrouble/.local/bin"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/vanstrouble/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
