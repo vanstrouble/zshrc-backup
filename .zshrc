@@ -190,3 +190,14 @@ fpath=(/Users/vanstrouble/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# zoxide with fzf
+# Función para usar zoxide con fzf
+zfzf() {
+    local dir
+    dir=$(zoxide query -l | fzf) && cd "$dir"
+}
+
+
+# En tu archivo ~/.zshrc
+bindkey -s '^k' 'clear\n'
